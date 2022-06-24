@@ -1,0 +1,20 @@
+git 저장소 연결하기
+
+git 저장소 생성 - pc에 저장소 이름과 같은 이름으로 폴더 생성
+
+git bash 켜서
+
+ - git config --global user.email "메일 주소"
+ - git config --global user.name "사용자 이름 (Hanul)"
+
+입력하고
+
+ - git init
+ - git remote add origin https://github.com/chu9400/Node.js.git
+ 
+이후 clone, 혹은 pull
+
+ - git add .
+ - gti commit -m "코멘트"
+ - git push origin master
+
