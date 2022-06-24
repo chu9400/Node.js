@@ -1,5 +1,5 @@
 # 코딩애플 Node.js 강의   
-# 들어가기 전 확인
+# Setting
  - git_start.txt : 깃 저장소 연결   
  - node_start.txt : node.js 및 라이브러리 설치
  - 부트스트랩 설치 : https://getbootstrap.kr/docs/5.1/getting-started/introduction/ 
