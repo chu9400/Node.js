@@ -1,12 +1,13 @@
-# 코딩애플 JS 강의
+# 코딩애플 Node.js 강의   
+# 들어가기 전 확인
+ - git_start.txt : 깃 저장소 연결   
+ - node_start.txt : node.js 및 라이브러리 설치
+ - 부트스트랩 설치 : https://getbootstrap.kr/docs/5.1/getting-started/introduction/ 
+    여기 들어가서 스타트 템플렛 복붙.
+
 ## Level 1 
 ### 6강 서브메뉴 만들어보기와 classList 다루기
 
-#### 부트스트랩 
-- cdn   
-link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"   
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>   
----
    
    
 #### 탈부착 class 
