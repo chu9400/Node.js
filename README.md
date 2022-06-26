@@ -5,11 +5,12 @@
  - 부트스트랩 설치 : https://getbootstrap.kr/docs/5.1/getting-started/introduction/ 
     여기 들어가서 스타트 템플렛 복붙.
 
+ - 서버 시작은 하는법 : 터미널키고 "node server.js" 엔터   혹은 "nodemon server.js" 엔터
+
 ## Level 1 
 ### 폼에 입력한 데이터를 서버에 전송하는 법 (POST요청)
 
- - 서버 시작은 터미널에서 : nodemon server.js   
- 코드 치고 엔터   
+
 
 <pre><code>
 
@@ -26,8 +27,7 @@
 const bodyParser= require('body-parser')   
 app.use(bodyParser.urlencoded({extended: true}))
 그러나   
-하지만 2021년 이후로 설치한 프로젝트들은 body-parser 라이브러리가 express에 기본 포함되어있어서 
-
+하지만 2021년 이후로 설치한 프로젝트들은 body-parser 라이브러리가 express에 기본 포함되어있어서   
 따로 npm으로 설치할 필요가 없습니다.   
 app.use(express.urlencoded({extended: true}))   
 이 코드만 추가 해주면 됨ㅋ   
