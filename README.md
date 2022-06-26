@@ -5,7 +5,8 @@
  - 부트스트랩 설치 : https://getbootstrap.kr/docs/5.1/getting-started/introduction/ 
     여기 들어가서 스타트 템플렛 복붙.
 
- - 서버 시작은 하는법 : 터미널키고 "node server.js" 엔터   혹은 "nodemon server.js" 엔터
+ - 서버 시작은 하는법 : 터미널키고 "node server.js" 엔터   
+ 혹은 "nodemon server.js" 엔터
 
 ## Level 1 
 ### 폼에 입력한 데이터를 서버에 전송하는 법 (POST요청)
