@@ -10,9 +10,9 @@ git bash 켜서
 입력하고
 
  - git init
- - git remote add origin https://github.com/chu9400/Node.js.git
+ - git remote add origin https://github.com/chu9400/Node.js.git(저장소 주소)
  
-이후 clone, 혹은 pull
+ (이 단계에서 clone, 혹은 pull 해도되고 안해도 됨)
 
  - git add .
  - gti commit -m "코멘트"

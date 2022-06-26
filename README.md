@@ -6,7 +6,35 @@
     여기 들어가서 스타트 템플렛 복붙.
 
 ## Level 1 
-### 6강 서브메뉴 만들어보기와 classList 다루기
+### 폼에 입력한 데이터를 서버에 전송하는 법 (POST요청)
+
+ - 서버 시작은 터미널에서 : nodemon server.js   
+ 코드 치고 엔터   
+
+<pre><code>
+
+ app.post('/경로',function(요청, 응답) {
+    응답.send('전송완료');
+});
+
+</code></pre>   
+   
+### body-parser 설치   
+app.post()할 때 요청 값(POST)를 쉽게 가져오기 위해 바디파서 설치.   
+터미널에 : npm install body-parser  엔터   
+그 후 server.js 상단에   
+const bodyParser= require('body-parser')   
+app.use(bodyParser.urlencoded({extended: true}))   
+
+그러나   
+하지만 2021년 이후로 설치한 프로젝트들은 body-parser 라이브러리가 express에 기본 포함되어있어서 
+
+따로 npm으로 설치할 필요가 없습니다.   
+app.use(express.urlencoded({extended: true}))   
+이 코드만 추가 해주면 됨ㅋ   
+
+---   
+
 
    
    
@@ -19,12 +47,7 @@
 &nbsp;&nbsp; 셀렉터로찾은요소.classList.remove('클래스명') 이렇게 쓰면 됩니다.
 
 <pre><code>
-  var 어레이 = [7,3,5,2,40];
 
-  var 새어레이 = 어레이.filter(function(a){
-    return a < 4
-  });
-  console.log(새어레이);
 </code></pre>   
 
 
