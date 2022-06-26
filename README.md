@@ -20,7 +20,7 @@
 </code></pre>   
    
 ### body-parser 설치   
-app.post()할 때 요청 값(POST)를 쉽게 가져오기 위해 바디파서 설치.   
+- app.post()할 때 요청 값(POST)를 쉽게 가져오기 위해 바디파서 설치.   
 터미널에 : npm install body-parser  엔터   
 그 후 server.js 상단에   
 const bodyParser= require('body-parser')   
