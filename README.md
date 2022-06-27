@@ -215,7 +215,7 @@ facebook.com/bbc/photos 이거 딱봐도 BBC뉴스 페북계정의 사진첩인 
 
 그런데 이걸 /newpost로 POST 요청을 하면 ~해주세요  뭐 이런식으로 명사로 바꾸면 조금 더 REST 해지겠네요.
 
-
+---   
 
    
    
