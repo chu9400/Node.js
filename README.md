@@ -223,10 +223,46 @@ facebook.com/bbc/photos 이거 딱봐도 BBC뉴스 페북계정의 사진첩인 
 
 ---   
 
-   
+### MongoDB에서 데이터를 꺼내고 싶다면
+1. 
+<pre><code>
+
+(server.js)
+
+app.get('/list', function(요청, 응답){
+  db.collection('post').find().toArray(function(에러, 결과){
+    console.log(결과)
+    응답.render('list.ejs', { posts : 결과 })
+  })
+})
+</code></pre>   
+
+- .find().toArray() 라고 적으시면 collection('post')에 있는 모든 데이터를 Array 자료형으로 가져옵니다. 
+
+2. 
+ - 데이터를 list.ejs 파일에 보내고 싶다면?
+ 응답.render('list.ejs', { posts : 결과 })   
+
+ .render()라는 함수에 둘째 파라미터를 요로케 적어주시면 
+list.ejs 파일을 렌더링함과 동시에 {posts: 결과} 라는 데이터를 함께 보내줄 수 있습니다.
+(정확히 말하면 결과라는 데이터를 posts 라는 이름으로 ejs 파일에 보내주세요~ 입니다)
+
+3. 
+ - 데이터로 EJS 파일 꾸미기(php 처럼 쓰면 됨)
+
+<pre><code>
+ (views/list.ejs)
+
+<% for (var i = 0; i < posts.length; i ++) { %>
+  <h4><%= posts[i].제목 %></h4>
+  <p><%= posts[i].날짜 %></p>
+<% } %>
+
+</code></pre>   
    
 
-&nbsp;&nbsp; 셀렉터로찾은요소.classList.remove('클래스명') 이렇게 쓰면 됩니다.
+
+&nbsp;&nbsp; 
 
 <pre><code>
 

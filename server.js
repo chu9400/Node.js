@@ -1,5 +1,6 @@
 //express 연결
 const express = require('express');
+const { addListener } = require('nodemon');
 const app = express();
 
 //MongoDB 연결
@@ -25,6 +26,14 @@ MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retr
         });
     });
 
+    app.post('/add', function(요청, 응답) {
+        응답.send('전송 완료');
+        db.collection('post').insertOne({title : 요청.body.title , date : 요청.body.date}, function(에러, 결과) {
+            console.log('전송완료_');
+        }  );
+
+    });
+
     app.listen(8080, function() {
         console.log('SUCCESS');
     });
@@ -38,12 +47,10 @@ app.get('/write',function(요청, 응답) {
 });
 
 app.get('/list', function(요청, 응답) {
-    응답.render('list.ejs');
+
+    db.collection('post').find().toArray(function(에러, 결과) {
+        console.log(결과);
+        응답.render('list.ejs', {posts : 결과});
+    });
+
 });
-
-
-
-// app.post('/add',function(요청, 응답) {
-//     응답.send('전송완료');
-//     console.log(요청.body);
-// });
