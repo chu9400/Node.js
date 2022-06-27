@@ -1,18 +1,28 @@
+//express 연결
 const express = require('express');
 const app = express();
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({extended: true}))
+
+//MongoDB 연결
+const MongoClient = require('mongodb').MongoClient;
 app.use(express.urlencoded({extended: true}))
+
+//ejs 파일 호환되게 설치
+app.set('view engine', 'ejs');
 
 var db;
 
-const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retryWrites=true&w=majority', function(에러, client) {
     if(에러) {return console.log('에러')}
     db = client.db('todoapp');
 
-    db.collection('post').insertOne({_id : 2, title : '제목', date : 2022}, function(에러, 결과) {
-        console.log('저장완료');
+    app.post('/add',function(요청, 응답) {
+        응답.send('전송완료_f');
+        db.collection('post').insertOne({ title : 요청.body.title, date : 요청.body.date}, function(에러, 결과) {
+
+            console.log(요청.body.title);
+            console.log(요청.body.date);
+            console.log('전송완료_b');
+        });
     });
 
     app.listen(8080, function() {
@@ -20,16 +30,18 @@ MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retr
     });
 });
 
-
-
-
-
 app.get('/',function(요청, 응답) {
     응답.sendFile(__dirname + '/index.html');
 });
 app.get('/write',function(요청, 응답) {
     응답.sendFile(__dirname + '/write.html');
 });
+
+app.get('/list', function(요청, 응답) {
+    응답.render('list.ejs');
+});
+
+
 
 // app.post('/add',function(요청, 응답) {
 //     응답.send('전송완료');

@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 따로 npm으로 설치할 필요가 없습니다.   
 
 app.use(express.urlencoded({extended: true}))   
+
 이 코드만 추가 해주면 됨ㅋ   
 
 ---   
