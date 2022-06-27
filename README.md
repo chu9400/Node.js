@@ -240,8 +240,8 @@ app.get('/list', function(요청, 응답){
 - .find().toArray() 라고 적으시면 collection('post')에 있는 모든 데이터를 Array 자료형으로 가져옵니다. 
 
 2. 
- - 데이터를 list.ejs 파일에 보내고 싶다면?
- 응답.render('list.ejs', { posts : 결과 })   
+ - 데이터를 list.ejs 파일에 보내고 싶다면?   
+ 응답.render('list.ejs', { posts : 결과 })     
 
  .render()라는 함수에 둘째 파라미터를 요로케 적어주시면 
 list.ejs 파일을 렌더링함과 동시에 {posts: 결과} 라는 데이터를 함께 보내줄 수 있습니다.
