@@ -24,12 +24,17 @@
 ### body-parser 설치   
 - app.post()할 때 요청 값(POST)를 쉽게 가져오기 위해 바디파서 설치.   
 터미널에 : npm install body-parser  엔터   
-그 후 server.js 상단에 추가   
+그 후 server.js 파일 안 상단에 아래 코드 추가   
+<pre><code>
+
 const bodyParser= require('body-parser')   
 app.use(bodyParser.urlencoded({extended: true}))
-그러나   
+
+</code></pre> 
+
 하지만 2021년 이후로 설치한 프로젝트들은 body-parser 라이브러리가 express에 기본 포함되어있어서   
 따로 npm으로 설치할 필요가 없습니다.   
+
 app.use(express.urlencoded({extended: true}))   
 이 코드만 추가 해주면 됨ㅋ   
 
