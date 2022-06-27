@@ -89,8 +89,8 @@ Representational State Transfer 라는 뜻인데 그냥 어떤 아조씨가 주�
 
 ### MongoDB에서 데이터를 꺼내고 싶다면 
 <pre><code>
-
 (server.js)
+
 
 app.get('/list', function(요청, 응답){
   db.collection('post').find().toArray(function(에러, 결과){
@@ -113,6 +113,7 @@ list.ejs 파일을 렌더링함과 동시에 {posts: 결과} 라는 데이터를
 
 <pre><code>
  (views/list.ejs)
+ 
 
    <% for(var i = 0; i < posts.length; i++) { %>
       <h4>할 일 제목 : <%= posts[i].title %></h4>
