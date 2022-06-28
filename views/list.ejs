@@ -28,13 +28,17 @@
   <script>
     $('.delete').on('click', function(e) {
         var 글번호 = e.target.dataset.id;
+        var 지금누른거 = $(this);
         $.ajax({
             method : 'DELETE',
             url : '/delete',
             data : {_id : 글번호}
         }).done(function(결과) {
-            location.reload();
-        })
+            console.log('성공했어염');
+            지금누른거.parent('li').fadeOut();
+        }).fail(function() {
+          console.log('실패');
+        });
     })
 
 
