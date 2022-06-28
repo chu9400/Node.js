@@ -17,21 +17,15 @@ MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retr
     db = client.db('todoapp');
 
     app.post('/add',function(요청, 응답) {
-        응답.send('전송완료_f');
-        db.collection('post').insertOne({ title : 요청.body.title, date : 요청.body.date}, function(에러, 결과) {
-
-            console.log(요청.body.title);
-            console.log(요청.body.date);
-            console.log('전송완료_b');
+        응답.send('전송완료');
+        db.collection('counter').findOne({name : '게시물갯수'}, function(에러, 결과) {
+            console.log(결과.totalPost);
+            var 총게시물갯수 = 결과.totalPost;
+            db.collection('post').insertOne({_id : 총게시물갯수, title : 요청.body.title, date : 요청.body.date}, function(에러, 결과) {
+                console.log('저장 완료');
+                db.collection('counter').updateOne({name:'게시물갯수'},{$inc : {totalPost:1}} );
+            });
         });
-    });
-
-    app.post('/add', function(요청, 응답) {
-        응답.send('전송 완료');
-        db.collection('post').insertOne({title : 요청.body.title , date : 요청.body.date}, function(에러, 결과) {
-            console.log('전송완료_');
-        }  );
-
     });
 
     app.listen(8080, function() {
@@ -54,3 +48,12 @@ app.get('/list', function(요청, 응답) {
     });
 
 });
+
+~
+app.delete('/delete', function(요청, 응답) {
+    요청.body._id = parseInt(요청.body._id);
+    db.collection('post').deleteOne(요청.body, function(에러, 결과) {
+        console.log('삭제 완료');
+        
+    })
+})

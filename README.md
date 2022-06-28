@@ -121,15 +121,53 @@ list.ejs 파일을 렌더링함과 동시에 {posts: 결과} 라는 데이터를
    <% } %>  
 
 </code></pre>   
-   
+
+### 코드 이해하기
+
+<pre><code>
+   app.post('/add', function(요청, 응답){
+   db.collection('counter').findOne({name : '게시물갯수'}, function(에러, 결과){
+      var 총게시물갯수 = 결과.totalPost;
+      db.collection('post').insertOne( { _id : (총게시물갯수 + 1), 제목 : 요청.body.title, 날짜 : 요청.body.date } , function(){
+         console.log('저장완료')
+         응답.send('전송완료');
+      });
+   });
+   });
+</code></pre>   
+
+이런 긴 코드는 무슨 예술작품처럼 한눈에 보고 이해하려하시면 안됩니다.
+
+위에서 부터 한줄한줄 읽어나가셔야합니다.
+1번줄 : 누군가 /add 경로로 post 요청을 하면   
+
+2번줄 : counter라는 콜렉션에서 총게시물갯수 저장해놓은 문서를 찾습니다. 그 찾은 문서는 결과라는 변수에 담겨옵니다.   
+
+3번줄 : 결과.totalPost하면 총게시물 갯수가 뿅하고 출현합니다. 그걸 var 총게시물갯수 변수에 저장해서 사용합니다.   
+
+4번줄 : 이제 글저장 시간입니다. post라는 콜렉션에 insertOne을 이용해 게시물을 추가합니다. 추가할 때 _id를 var 총게시물갯수를 이용해 제대로 부여해줍니다.   
+
+6번줄 : 성공했다고 응답.send로 브라우저에게 글자를 보냅니다. 응답.render, 응답.redirect 이런 것도 이용가능합니다.   
+
+근데 뭔가 하나의 기능이 빠져있습니다.
+
+4번줄에서 글을 잘 발행했다면...
+
+counter라는 콜렉션 내의 'totalPost'라는 값도 1 증가시켜야하겠는데요?
+
+(totalPost가 총게시물갯수 세는 역할이라면서요.)
+
+그러면 어떻게 하는지 다음 시간에 알아보도록 합시다. 
+
+
+
+
 
 
 &nbsp;&nbsp; 
 
 <pre><code>
-
-</code></pre>   
-
+</code></pre>  
 
 
 
