@@ -10,6 +10,14 @@ app.use(express.urlencoded({extended: true}))
 //ejs 파일 호환되게 설치
 app.set('view engine', 'ejs');
 
+// 해당 경로를 퍼블릭하게 쓰겠다 선언
+app.use('/public', express.static('public'));
+
+// 메쏘드 오버라이드 설치
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
+
+
 var db;
 
 MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retryWrites=true&w=majority', function(에러, client) {
@@ -33,12 +41,14 @@ MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retr
     });
 });
 
-app.get('/',function(요청, 응답) {
-    응답.sendFile(__dirname + '/index.html');
+
+app.get('/', function(요청, 응답){
+    응답.render('index.ejs');
 });
-app.get('/write',function(요청, 응답) {
-    응답.sendFile(__dirname + '/write.html');
+app.get('/write', function(요청, 응답){
+    응답.render('write.ejs');
 });
+
 
 app.get('/list', function(요청, 응답) {
 
@@ -60,8 +70,26 @@ app.delete('/delete', function(요청, 응답){
 
 
 app.get('/detail/:id', function(요청, 응답){
-    db.collection('post').findOne({ _id :parseInt(요청.params.id) }, function(에러, 결과){
-        console.log(결과);
-      응답.render('detail.ejs', {data : 결과} );
+    db.collection('post').findOne({_id : parseInt(요청.params.id) }, function(에러, 결과){
+        응답.render('detail.ejs', {data : 결과} );
     })
   });
+
+app.get('/edit/:id', function(요청, 응답){
+  db.collection('post').findOne({ _id : parseInt(요청.params.id) }, function(에러, 결과){
+    응답.render('edit.ejs', { post : 결과 })
+  })
+  
+});
+
+
+app.put('/edit', function(요청, 응답) {
+    db.collection('post').updateOne({_id: parseInt(요청.body.id)}, {$set: {title : 요청.body.title, date : 요청.body.date}}, 
+        function(에러, 결과) {
+        console.log('수정 완료')
+        console.log({_id: parseInt(요청.body.id)})
+
+        응답.redirect('/list')
+    })
+
+})
