@@ -163,7 +163,7 @@ counter라는 콜렉션 내의 'totalPost'라는 값도 1 증가시켜야하겠�
 
 
 
-
+test
 &nbsp;&nbsp; 
 
 <pre><code>
