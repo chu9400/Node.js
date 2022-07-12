@@ -159,6 +159,12 @@ counter라는 콜렉션 내의 'totalPost'라는 값도 1 증가시켜야하겠�
 
 그러면 어떻게 하는지 다음 시간에 알아보도록 합시다. 
 
+---   
+
+## 세션 사용하려면 라이브러리 다운
+
+- 터미널 : npm install passport passport-local express-session   
+
 
 
 
