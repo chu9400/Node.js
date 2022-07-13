@@ -17,10 +17,13 @@ app.use('/public', express.static('public'));
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
+// 환경변수 사용을 위한 .env 파일의 라이브러리
+require('dotenv').config()
+
 
 var db;
 
-MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retryWrites=true&w=majority', function(에러, client) {
+MongoClient.connect(process.env.DB_URL, function(에러, client) {
     if(에러) {return console.log('에러')}
     db = client.db('todoapp');
 
@@ -36,8 +39,8 @@ MongoClient.connect('mongodb+srv://admin:1324@cluster0.xlqugu9.mongodb.net/?retr
         });
     });
 
-    app.listen(8080, function() {
-        console.log('SUCCESS');
+    app.listen(process.env.PORT, function() {
+        console.log('listening on 8080');
     });
 });
 
@@ -155,4 +158,11 @@ passport.use(new LocalStrategy({
     db.collection('login').findOne({id : 아이디}, function(에러, 결과) {
         done(null, 결과)
     })
+  });
+
+  app.get('/search', function(요청, 응답) {
+    db.collection('post').find({title:요청.query.value}).toArray(function(에러, 결과) {
+      응답.render('search.ejs',{search : 결과});
+    })
+    
   });
